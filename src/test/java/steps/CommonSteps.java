@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -44,6 +45,38 @@ public class CommonSteps extends SeleniumUtility {
     public void validate_appears(String expectedHeading) {
         String h2Text = getElementTextWait(Page.PRIMARY_ACCOUNT_HEADING, 10);
         Assert.assertEquals(h2Text, expectedHeading);
+    }
+
+    String email = "john.doe.123@company.com";
+    @Then("fill the Create Primary Account form")
+    public void fill_the_create_primary_account_form() {
+        setElementData(Page.EMAIL, email);
+        clickElement(Page.TITLE);
+        setElementData(Page.FIRSTNAME, "John");
+        setElementData(Page.LASTNAME, "Doe");
+        clickElement(Page.GENDER);
+        clickElement(Page.MARITAL_STATUS);
+        setElementData(Page.EMPLOYMENT_STATUS, "Employed");
+        setElementData(Page.DATE_OF_BIRTH, "11/11/1999");
+        clickElement(Page.DATE_OF_BIRTH);
+    }
+    @Then("submit the form")
+    public void submit_the_form() {
+        clickElement(Page.CREATE_ACCOUNT_BUTTON);
+    }
+    @Then("validate {string} appears and verify email")
+    public void validate_appears_and_verify_email(String expectedHeading) {
+        String signUpHeading = getElementTextWait(Page.SIGNUP_ACCOUNT_HEADING, 10);
+        Assert.assertEquals(signUpHeading, expectedHeading);
+
+        String verifyEmail = getElementText(Page.VERIFY_EMAIL);
+        Assert.assertEquals(verifyEmail, email);
+    }
+
+    @Then("verify error {string} appears")
+    public void verify_error_appears(String expectedError) {
+        String error = getElementTextWait(Page.ACCOUNT_EXISTS_ERROR, 10);
+        Assert.assertEquals(error, expectedError);
     }
 
 

@@ -12,18 +12,20 @@ import java.time.Duration;
 public class SeleniumUtility extends Setup {
 
         public String getElementText(By locator){
-            WebElement element = getDriver().findElement(locator);
-            return element.getText();
+            return getDriver().findElement(locator).getText();
         }
 
         public void clickElement(By locator){
-            WebElement element = getDriver().findElement(locator);
-            element.click();
+            getDriver().findElement(locator).click();
         }
 
         public String getElementTextWait(By locator, int duration){
             WebDriverWait driverWait = new WebDriverWait(getDriver(), Duration.ofSeconds(duration));
             return driverWait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
+        }
+
+        public void setElementData(By locator, String data){
+            getDriver().findElement(locator).sendKeys(data);
         }
 
 
