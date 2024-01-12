@@ -18,4 +18,11 @@ public class Page {
     public static final By SIGNUP_ACCOUNT_HEADING = By.xpath("//h2[contains(text(),'Sign up your account')]");
     public static final By VERIFY_EMAIL = By.xpath("//h2[@class='chakra-heading css-18j379d'][2]");
     public static final By ACCOUNT_EXISTS_ERROR = By.xpath("//div[@class='chakra-alert__title css-tidvy5']");
+    public static final By LOGIN_BUTTON = By.xpath("//a[@href='/login']");
+    public static final By LOGIN_FORM_HEADING = By.xpath("//h2[contains(text(), 'Sign in to your Account')]");
+    public static final By USERNAME = By.id("username");
+    public static final By PASSWORD = By.id("password");
+    public static final By SIGN_IN_BUTTON = By.xpath("//button[contains(text(), 'Sign In')]");
+    public static final By PORTAL_HEADING = By.xpath("//h2[contains(text(), 'Customer Service Portal')]");
+
 }

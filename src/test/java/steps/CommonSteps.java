@@ -79,6 +79,27 @@ public class CommonSteps extends SeleniumUtility {
         Assert.assertEquals(error, expectedError);
     }
 
+    @Then("click on Login button")
+    public void click_on_login_button() {
+        clickElement(Page.LOGIN_BUTTON);
+    }
+    @Then("validate {string} is displayed")
+    public void validate_is_displayed(String expectedHeading) {
+        String loginHeading = getElementTextWait(Page.LOGIN_FORM_HEADING, 10);
+        Assert.assertEquals(loginHeading, expectedHeading);
+    }
+    @Then("login with username {string} and password {string}")
+    public void login_with_username_and_password(String username, String password) {
+        setElementData(Page.USERNAME, username);
+        setElementData(Page.PASSWORD, password);
+        clickElement(Page.SIGN_IN_BUTTON);
+    }
+    @Then("validate user navigates to {string}")
+    public void validate_user_navigates_to(String expectedHeading) {
+        String portalHeading = getElementTextWait(Page.PORTAL_HEADING, 20);
+        Assert.assertEquals(portalHeading, expectedHeading);
+    }
+
 
     /*
       @Then("close browser")
