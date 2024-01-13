@@ -2,6 +2,8 @@ package utilities;
 
 import base.Setup;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +12,11 @@ import pages.Page;
 import java.time.Duration;
 
 public class SeleniumUtility extends Setup {
+
+        public byte[] takeScreenshots(){
+            TakesScreenshot screenshot = (TakesScreenshot) getDriver();
+            return screenshot.getScreenshotAs(OutputType.BYTES);
+        }
 
         public String getElementText(By locator){
             return getDriver().findElement(locator).getText();
